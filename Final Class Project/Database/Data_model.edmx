@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="remax_Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="50" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Houses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="house_number" Type="int" Nullable="false" />
+          <Property Name="street_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_of_rooms" Type="int" />
+          <Property Name="number_of_bathrooms" Type="int" />
+          <Property Name="garage" Type="int" />
+          <Property Name="pool" Type="int" />
+          <Property Name="fireplace" Type="int" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="state" Type="varchar" MaxLength="50" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__city__country__2B0A656D">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__city__state__2A164134">
+          <End Role="state" Type="Self.state" Multiplicity="0..1" />
+          <End Role="city" Type="Self.city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__state__country__2BFE89A6">
+          <End Role="country" Type="Self.country" Multiplicity="0..1" />
+          <End Role="state" Type="Self.state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="remax_ModelStoreContainer">
+          <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Houses" EntityType="Self.Houses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__city__country__2B0A656D" Association="Self.FK__city__country__2B0A656D">
+            <End Role="country" EntitySet="country" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="FK__city__state__2A164134" Association="Self.FK__city__state__2A164134">
+            <End Role="state" EntitySet="state" />
+            <End Role="city" EntitySet="city" />
+          </AssociationSet>
+          <AssociationSet Name="FK__state__country__2BFE89A6" Association="Self.FK__state__country__2BFE89A6">
+            <End Role="country" EntitySet="country" />
+            <End Role="state" EntitySet="state" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="remax_Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="remax_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Houses" EntityType="remax_Model.House" />
+          <EntitySet Name="cities" EntityType="remax_Model.city" />
+          <EntitySet Name="countries" EntityType="remax_Model.country" />
+          <EntitySet Name="states" EntityType="remax_Model.state" />
+          <AssociationSet Name="FK__city__country__2B0A656D" Association="remax_Model.FK__city__country__2B0A656D">
+            <End Role="country" EntitySet="countries" />
+            <End Role="city" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__city__state__2A164134" Association="remax_Model.FK__city__state__2A164134">
+            <End Role="state" EntitySet="states" />
+            <End Role="city" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__state__country__2BFE89A6" Association="remax_Model.FK__state__country__2BFE89A6">
+            <End Role="country" EntitySet="countries" />
+            <End Role="state" EntitySet="states" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="house_number" Type="Int32" Nullable="false" />
+          <Property Name="street_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="number_of_rooms" Type="Int32" />
+          <Property Name="number_of_bathrooms" Type="Int32" />
+          <Property Name="garage" Type="Int32" />
+          <Property Name="pool" Type="Int32" />
+          <Property Name="fireplace" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="country1" Relationship="remax_Model.FK__city__country__2B0A656D" FromRole="city" ToRole="country" />
+          <NavigationProperty Name="state1" Relationship="remax_Model.FK__city__state__2A164134" FromRole="city" ToRole="state" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cities" Relationship="remax_Model.FK__city__country__2B0A656D" FromRole="country" ToRole="city" />
+          <NavigationProperty Name="states" Relationship="remax_Model.FK__state__country__2BFE89A6" FromRole="country" ToRole="state" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cities" Relationship="remax_Model.FK__city__state__2A164134" FromRole="state" ToRole="city" />
+          <NavigationProperty Name="country1" Relationship="remax_Model.FK__state__country__2BFE89A6" FromRole="state" ToRole="country" />
+        </EntityType>
+        <Association Name="FK__city__country__2B0A656D">
+          <End Type="remax_Model.country" Role="country" Multiplicity="0..1" />
+          <End Type="remax_Model.city" Role="city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__city__state__2A164134">
+          <End Type="remax_Model.state" Role="state" Multiplicity="0..1" />
+          <End Type="remax_Model.city" Role="city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="city">
+              <PropertyRef Name="state" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__state__country__2BFE89A6">
+          <End Type="remax_Model.country" Role="country" Multiplicity="0..1" />
+          <End Type="remax_Model.state" Role="state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="state">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="remax_ModelStoreContainer" CdmEntityContainer="remax_Entities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="remax_Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Houses">
+            <EntityTypeMapping TypeName="remax_Model.House">
+              <MappingFragment StoreEntitySet="Houses">
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="fireplace" ColumnName="fireplace" />
+                <ScalarProperty Name="pool" ColumnName="pool" />
+                <ScalarProperty Name="garage" ColumnName="garage" />
+                <ScalarProperty Name="number_of_bathrooms" ColumnName="number_of_bathrooms" />
+                <ScalarProperty Name="number_of_rooms" ColumnName="number_of_rooms" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="street_name" ColumnName="street_name" />
+                <ScalarProperty Name="house_number" ColumnName="house_number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="remax_Model.city">
+              <MappingFragment StoreEntitySet="city">
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="remax_Model.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="remax_Model.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

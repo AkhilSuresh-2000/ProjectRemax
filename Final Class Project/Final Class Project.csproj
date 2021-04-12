@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7CD6DD34-04B4-48CF-95D9-E6965093133F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Final_Class_Project</RootNamespace>
+    <AssemblyName>Final Class Project</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\Admin_Client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\Admin_Client.Designer.cs">
+      <DependentUpon>Admin_Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Customer_Client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\Customer_Client.Designer.cs">
+      <DependentUpon>Customer_Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Users_Client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Client\Users_Client.Designer.cs">
+      <DependentUpon>Users_Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Database\city.cs">
+      <DependentUpon>Data_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\country.cs">
+      <DependentUpon>Data_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Data_model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data_model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Data_model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Data_model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data_model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\House.cs">
+      <DependentUpon>Data_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\House_Data.cs" />
+    <Compile Include="Database\state.cs">
+      <DependentUpon>Data_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User.cs">
+      <DependentUpon>Data_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User_Data.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Client\Admin_Client.resx">
+      <DependentUpon>Admin_Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Customer_Client.resx">
+      <DependentUpon>Customer_Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Client\Users_Client.resx">
+      <DependentUpon>Users_Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EntityDeploy Include="Database\Data_model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Data_model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\Data_model.edmx.diagram">
+      <DependentUpon>Data_model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\Data_model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Data_model.edmx</DependentUpon>
+      <LastGenOutput>Data_model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\Data_model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Data_model.edmx</DependentUpon>
+      <LastGenOutput>Data_model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
